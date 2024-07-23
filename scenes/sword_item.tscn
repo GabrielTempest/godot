@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjh5fa22yeev3"]
+
+[ext_resource type="Script" path="res://scripts/sword_item.gd" id="1_biks6"]
+[ext_resource type="Texture2D" uid="uid://cp2p7cx2tgyl" path="res://assets/sprites/sword_items.png" id="1_qd3pv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycvmb"]
+atlas = ExtResource("1_qd3pv")
+region = Rect2(0, 0, 18, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g8y7"]
+atlas = ExtResource("1_qd3pv")
+region = Rect2(18, 0, 18, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrfml"]
+atlas = ExtResource("1_qd3pv")
+region = Rect2(36, 0, 18, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j24bl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycvmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g8y7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrfml")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jug5r"]
+radius = 25.0
+height = 52.0
+
+[node name="sword_item" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_biks6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.90735e-06, 1)
+scale = Vector2(5.94444, 5.36842)
+sprite_frames = SubResource("SpriteFrames_j24bl")
+autoplay = "default"
+frame_progress = 0.303219
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-10, 7)
+shape = SubResource("CapsuleShape2D_jug5r")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
